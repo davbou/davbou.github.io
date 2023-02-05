@@ -530,6 +530,7 @@ $(".set-selector").change(function () {
 				pokeObj.find(".teraType").val(set.teraType || pokemon.types[0]);
 			}
 			pokeObj.find(".level").val(set.level);
+            pokeObj.find(".bossMultiplier").val(set.bossMultiplier ? set.bossMultiplier : 100);
 			pokeObj.find(".hp .evs").val((set.evs && set.evs.hp !== undefined) ? set.evs.hp : 0);
 			pokeObj.find(".hp .ivs").val((set.ivs && set.ivs.hp !== undefined) ? set.ivs.hp : 31);
 			pokeObj.find(".hp .dvs").val((set.dvs && set.dvs.hp !== undefined) ? set.dvs.hp : 15);
@@ -579,6 +580,7 @@ $(".set-selector").change(function () {
 		} else {
 			pokeObj.find(".teraType").val(pokemon.types[0]);
 			pokeObj.find(".level").val(100);
+            pokeObj.find(".bossMultiplier").val(100);
 			pokeObj.find(".hp .evs").val(0);
 			pokeObj.find(".hp .ivs").val(31);
 			pokeObj.find(".hp .dvs").val(15);
