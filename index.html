@@ -855,12 +855,12 @@
                             </div></td>
                         </tr>
                         <tr class="gen-specific g9">
-                            <td><div class="left" title="Is this Pok&eacute;mon protected?">
+                            <td><div class="left" title="Is this Pok&eacute;mon boosted by an ally's def cheer?">
                                 <div hidden id="selectDefCheerInstruction">Is this Pok&eacute;mon boosted by an ally's def cheer?</div>
                                 <input aria-describedby="selectDefCheerInstruction" class="visually-hidden calc-trigger" type="checkbox" id="defCheerL" />
                                 <label class="btn btn-wide" for="defCheerL">def cheer</label>
                             </div></td>
-                            <td><div class="right" title="Is this Pok&eacute;mon protected?">
+                            <td><div class="right" title="Is this Pok&eacute;mon boosted by an ally's def cheer?">
                                 <input aria-describedby="selectDefCheerInstruction" class="visually-hidden calc-trigger" type="checkbox" id="defCheerR" />
                                 <label class="btn btn-wide" for="defCheerR">def cheer</label>
                             </div></td>
@@ -931,7 +931,7 @@
                                 <label class="btn btn-xxwide" for="tailwindR">Tailwind</label>
                             </div></td>
                         </tr>
-                        <tr class="gen-specific g4 g5 g6 g7 g8 g9">
+                        <tr class="gen-specific g4 g5 g6 g7 g8 "> <!--g9 -->
                             <td><div class="left" title="Is the Pok&eacute;mon affected by an ally's Flower Gift?">
                                 <div hidden id="selectFlowerGiftInstruction">Is the Pok&eacute;mon affected by an ally's Flower Gift?</div>
                                 <input aria-describedby="selectFlowerGiftInstruction" class="visually-hidden calc-trigger" type="checkbox" id="flowerGiftL" />
@@ -975,7 +975,7 @@
                                 <label class="btn btn-xxwide" for="StatBoostR">+1 All Stats</label>
                             </div></td>
                         </tr>
-                        <tr class="gen-specific g7 g8 g9">
+                        <tr class="gen-specific g7 g8 "> <!-- g9 -->
                           <td><div class="left" title="Is the Pok&eacute;mon boosted by an ally's Battery ability?">
                               <div hidden id="selectBatteryInstruction">Is the Pok&eacute;mon boosted by an ally's Battery ability?</div>
                                 <input aria-describedby="selectBatteryInstruction" class="visually-hidden calc-trigger" type="checkbox" id="batteryL" />
@@ -986,7 +986,7 @@
                                 <label class="btn btn-xxwide" for="batteryR">Battery</label>
                             </div></td>
                         </tr>
-                        <tr class="gen-specific g8 g9">
+                        <tr class="gen-specific g8">
                           <td><div class="left" title="Is the Pok&eacute;mon boosted by an ally's Power Spot ability?">
                               <div hidden id="selectPowerSpotInstruction">Is the Pok&eacute;mon boosted by an ally's Power Spot ability?</div>
                                 <input aria-describedby="selectPowerSpotInstruction" class="visually-hidden calc-trigger" type="checkbox" id="powerSpotL" />
@@ -995,6 +995,52 @@
                             <td><div class="right" title="Is the Pok&eacute;mon boosted by an ally's Power Spot ability?">
                                 <input aria-describedby="selectPowerSpotInstruction" class="visually-hidden calc-trigger" type="checkbox" id="powerSpotR" />
                                 <label class="btn btn-xxwide" for="powerSpotR">Power Spot</label>
+                            </div></td>
+                        </tr>
+                        <tr class="gen-specific g9">
+                            <div hidden id="selectPowerSpotInstructionRadio">How many allies have the Power Spot ability?</div>
+                            <td><div aria-labelledby="selectPowerSpotInstructionRadio" class="left" role="radiogroup" title="How many allies have the Power Spot ability?">
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotL" value="0" id="powerSpotL0" checked="checked" />
+                                <label class="btn btn-xsmall btn-left" for="powerSpotL0">0</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotL" value="1" id="powerSpotL1" />
+                                <label class="btn btn-xsmall btn-mid" for="powerSpotL1">1</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotL" value="2" id="powerSpotL2" />
+                                <label class="btn btn-xsmall btn-mid" for="powerSpotL2">2</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotL" value="3" id="powerSpotL3" />
+                                <label class="btn btn-wide btn-right" for="powerSpotL3">3 Power Spots</label>
+                            </div></td>
+                            <td><div aria-labelledby="selectPowerSpotInstructionRadio" class="right" role="radiogroup" title="How many allies have the Power Spot ability?">
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotR" value="3" id="powerSpotR3" />
+                                <label class="btn btn-wide btn-left" for="powerSpotR3">3 Power Spot</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotR" value="2" id="powerSpotR2" />
+                                <label class="btn btn-xsmall btn-mid" for="powerSpotR2">2</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotR" value="1" id="powerSpotR1" />
+                                <label class="btn btn-xsmall btn-mid" for="powerSpotR1">1</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="powerSpotR" value="0" id="powerSpotR0" checked="checked" />
+                                <label class="btn btn-xsmall btn-right" for="powerSpotR0">0</label>
+                            </div></td>
+                        </tr>
+                        <tr class="gen-specific g9">
+                            <div hidden id="selectSteelySpiritInstructionRadio">How many allies have the Steely Spirit ability?</div>
+                            <td><div aria-labelledby="selectSteelySpiritInstructionRadio" class="left" role="radiogroup" title="How many allies have the Steely Spirit ability?">
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritL" value="0" id="steelySpiritL0" checked="checked" />
+                                <label class="btn btn-xsmall btn-left" for="steelySpiritL0">0</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritL" value="1" id="steelySpiritL1" />
+                                <label class="btn btn-xsmall btn-mid" for="steelySpiritL1">1</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritL" value="2" id="steelySpiritL2" />
+                                <label class="btn btn-xsmall btn-mid" for="steelySpiritL2">2</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritL" value="3" id="steelySpiritL3" />
+                                <label class="btn btn-wide btn-right" for="steelySpiritL3">3 Steely Spirits</label>
+                            </div></td>
+                            <td><div aria-labelledby="selectSteelySpiritInstructionRadio" class="right" role="radiogroup" title="How many allies have the Steely Spirit ability?">
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritR" value="3" id="steelySpiritR3" />
+                                <label class="btn btn-wide btn-left" for="steelySpiritR3">3 Steely Spirit</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritR" value="2" id="steelySpiritR2" />
+                                <label class="btn btn-xsmall btn-mid" for="steelySpiritR2">2</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritR" value="1" id="steelySpiritR1" />
+                                <label class="btn btn-xsmall btn-mid" for="steelySpiritR1">1</label>
+                                <input class="visually-hidden calc-trigger" type="radio" name="steelySpiritR" value="0" id="steelySpiritR0" checked="checked" />
+                                <label class="btn btn-xsmall btn-right" for="steelySpiritR0">0</label>
                             </div></td>
                         </tr>
                         <tr class="gen-specific g2 g3 g4 g5 g6 g7 g8 g9">
@@ -1575,7 +1621,7 @@
     <script type="text/javascript" src="./calc/util.js?51463f0d"></script>
     <script type="text/javascript" src="./calc/stats.js?a9e37d1a"></script>
     <script type="text/javascript" src="./calc/data/species.js?073a0e7d"></script>
-    <script type="text/javascript" src="./js/data/sets/raid_bosses.js?353a2a9e"></script>
+    <script type="text/javascript" src="./js/data/sets/raid_bosses.js?7aa8094d"></script>
 	 <!-- <script type="text/javascript" src="./js/data/sets/gen9.js?13288901"></script>
     <script type="text/javascript" src="./js/data/sets/gen8.js?0d186374"></script>
     <script type="text/javascript" src="./js/data/sets/gen7.js?7fe4fb3d"></script>
@@ -1592,21 +1638,21 @@
     <script type="text/javascript" src="./calc/data/items.js?0409f13e"></script>
     <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
     <script type="text/javascript" src="./calc/move.js?57ab9f0a"></script>
-    <script type="text/javascript" src="./calc/pokemon.js?f30aef97"></script>
-    <script type="text/javascript" src="./calc/field.js?e2966cbd"></script>
+    <script type="text/javascript" src="./calc/pokemon.js?2d3f910e"></script>
+    <script type="text/javascript" src="./calc/field.js?458f8d81"></script>
     <script type="text/javascript" src="./calc/items.js?10064fda"></script>
     <script type="text/javascript" src="./calc/mechanics/util.js?910b9a7c"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen789.js?7c85c9d0"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen789.js?d2e276e1"></script>
     <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
     <script type="text/javascript" src="./calc/mechanics/gen4.js?dc25f845"></script>
     <script type="text/javascript" src="./calc/mechanics/gen3.js?2037ac24"></script>
     <script type="text/javascript" src="./calc/mechanics/gen12.js?621ace01"></script>
     <script type="text/javascript" src="./calc/calc.js?40a2d9b1"></script>
-    <script type="text/javascript" src="./calc/desc.js?88bab46b"></script>
+    <script type="text/javascript" src="./calc/desc.js?b7ef0bc3"></script>
     <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
     <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
     <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?019481f0"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?816525bc"></script>
     <script type="text/javascript" src="./js/index_randoms_controls.js?87d3bda8"></script>
     <script type="text/javascript" src="./js/moveset_import.js?8d1a713e"></script>
 </div>

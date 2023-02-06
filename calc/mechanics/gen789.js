@@ -705,6 +705,12 @@ function calculateBPModsSMSSSV(gen, attacker, defender, move, field, desc, baseP
         bpMods.push(6144);
         desc.attackerAbility = attacker.ability;
     }
+    if (field.attackerSide.steelySpirits > 0 && move.hasType('Steel')) {
+        for (var i = 0; i < field.attackerSide.steelySpirits; i++) {
+            bpMods.push(6144);
+        }
+        desc.steelySpirits = field.attackerSide.steelySpirits;
+    }
     var aura = "".concat(move.type, " Aura");
     var isAttackerAura = attacker.hasAbility(aura);
     var isDefenderAura = defender.hasAbility(aura);
@@ -746,6 +752,12 @@ function calculateBPModsSMSSSV(gen, attacker, defender, move, field, desc, baseP
     if (field.attackerSide.isPowerSpot) {
         bpMods.push(5325);
         desc.isPowerSpot = true;
+    }
+    if (field.attackerSide.powerSpots > 0) {
+        for (var i = 0; i < field.attackerSide.powerSpots; i++) {
+            bpMods.push(5325);
+        }
+        desc.powerSpots = field.attackerSide.powerSpots;
     }
     if (attacker.hasAbility('Rivalry') && ![attacker.gender, defender.gender].includes('N')) {
         if (attacker.gender === defender.gender) {

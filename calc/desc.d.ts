@@ -43,7 +43,9 @@ export interface RawDesc {
     moveName: string;
     moveTurns?: string;
     moveType?: TypeName;
+    powerSpots?: number;
     rivalry?: 'buffed' | 'nerfed';
+    steelySpirits?: number;
     terrain?: Terrain;
     weather?: Weather;
     isDefenderDynamaxed?: boolean;

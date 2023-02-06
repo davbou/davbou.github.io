@@ -721,6 +721,12 @@ function buildDescription(description, attacker, defender) {
     if (description.isPowerSpot) {
         output += ' Power Spot boosted ';
     }
+    if (description.powerSpots) {
+        output += "with ".concat(description.powerSpots, " Power Spot ").concat(description.powerSpots === 1 ? 'boost' : 'boosts', " ");
+    }
+    if (description.steelySpirits) {
+        output += "with ".concat(description.steelySpirits).concat(attacker.hasAbility('Steely Spirit') ? ' extra' : '', " Steely Spirit").concat(description.steelySpirits === 1 ? ' ' : 's ');
+    }
     if (description.isSwitching) {
         output += ' switching boosted ';
     }

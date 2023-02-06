@@ -84,7 +84,6 @@ var Pokemon = (function () {
         this.status = options.status || '';
         this.toxicCounter = options.toxicCounter || 0;
         this.moves = options.moves || [];
-        console.log(this.stats);
     }
     Pokemon.prototype.maxHP = function (original) {
         if (original === void 0) { original = false; }
