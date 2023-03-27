@@ -29,7 +29,7 @@ function display(gen, attacker, defender, move, field, damage, rawDesc, notation
     var minDisplay = toDisplay(notation, min, defender.maxHP());
     var maxDisplay = toDisplay(notation, max, defender.maxHP());
     var desc = buildDescription(rawDesc, attacker, defender);
-    var damageText = "".concat(min, "-").concat(max, " (").concat(minDisplay, " - ").concat(maxDisplay).concat(notation, ")");
+    var damageText = "".concat(min, "-").concat(max, " (").concat(minDisplay, " - ").concat(maxDisplay).concat(notation).concat(getBossMultiplierDesc(defender), ")");
     if (move.category === 'Status' && !move.named('Nature Power'))
         return "".concat(desc, ": ").concat(damageText);
     var koChanceText = getKOChance(gen, attacker, defender, move, field, damage, err).text;
@@ -302,6 +302,15 @@ var TRAPPING = [
     'Bind', 'Clamp', 'Fire Spin', 'Infestation', 'Magma Storm', 'Sand Tomb',
     'Thunder Cage', 'Whirlpool', 'Wrap', 'G-Max Sandblast', 'G-Max Centiferno',
 ];
+function getBossMultiplierDesc(defender) {
+    if (defender.bossMultiplier > 100) {
+        return " of ".concat(toFixedIfNecessary(defender.bossMultiplier / 100, 1), "x hp boss");
+    }
+    return '';
+}
+function toFixedIfNecessary(value, dp) {
+    return +parseFloat(value).toFixed(dp);
+}
 function getHazards(gen, defender, defenderSide) {
     var damage = 0;
     var texts = [];
