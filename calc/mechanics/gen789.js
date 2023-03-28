@@ -687,9 +687,13 @@ function calculateBPModsSMSSSV(gen, attacker, defender, move, field, desc, baseP
         bpMods.push(6144);
         desc.isHelpingHand = true;
     }
-    if (field.attackerSide.isAtkCheered) {
+    if (field.attackerSide.isAtkCheered && !move.named('Body Press')) {
         bpMods.push(6144);
         desc.isAtkCheered = true;
+    }
+    if (move.named('Body Press') && field.attackerSide.isDefCheered) {
+        bpMods.push(6144);
+        desc.isDefCheered = true;
     }
     var terrainMultiplier = gen.num > 7 ? 5325 : 6144;
     if ((0, util_2.isGrounded)(attacker, field)) {
