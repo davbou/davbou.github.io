@@ -683,7 +683,8 @@ function calculateBPModsSMSSSV(gen, attacker, defender, move, field, desc, baseP
         bpMods.push(6144);
         desc.isHelpingHand = true;
     }
-    if (field.attackerSide.isAtkCheered && !move.named('Body Press')) {
+    if ((field.attackerSide.isAtkCheered && !move.named('Body Press') && !move.named('Foul Play')) ||
+        (move.named('Foul Play') && field.defenderSide.isAtkCheered)) {
         bpMods.push(6144);
         desc.isAtkCheered = true;
     }
