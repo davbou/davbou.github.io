@@ -6,8 +6,9 @@
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pok&eacute;mon Damage Calculator (Raiding fork)</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?fa61bbf2" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?16b5cf35" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26211653-3"></script>
     <script>
@@ -22,9 +23,21 @@
             return false;
         };
     </script>
+    <!-- Immediately loads the dark theme in order to reduce FOIT -->
+    <script>
+        /*
+        * localStorage will only store strings
+        * This means that if it has the value 'false',
+        * It will be truey and incorrectly cause the
+        * dark theme to load.
+        */
+        if (localStorage.getItem('darkTheme') !== 'true') {
+            document.getElementById('dark-theme-styles').disabled = true;
+        }
+    </script>
 </head>
 
-<body>
+<body class="dark-theme">
 
 <nav><div class="header"><div class="header-inner">
     <ul class="nav">
@@ -143,7 +156,7 @@
                     <label>Type</label>
                     <select aria-label="type1" class="type1 terrain-trigger calc-trigger"></select>
                     <select aria-label="type2" class="type2 terrain-trigger calc-trigger"></select>
-                    <small class="right">(<a class="analysis" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
+                    <small class="right">(<a class="analysis links-lighten" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
                 </div>
                 <div class="gen-specific g9">
                     <label>Tera Type</label>
@@ -1131,7 +1144,7 @@
                     <label>Type</label>
                     <select aria-label="Type 1" class="type1 terrain-trigger calc-trigger"></select>
                     <select aria-label="Type 2" class="type2 terrain-trigger calc-trigger"></select>
-                    <small class="right">(<a class="analysis" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
+                    <small class="right">(<a class="analysis links-lighten" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
                 </div>
                 <div class="gen-specific g9">
                     <label>Tera Type</label>
@@ -1661,15 +1674,15 @@
     <script type="text/javascript" src="./calc/stats.js?a9e37d1a"></script>
     <script type="text/javascript" src="./calc/data/species.js?402c42af"></script>
     <script type="text/javascript" src="./js/data/sets/raid_bosses.js?fe73c92c"></script>
-	 <!-- <script type="text/javascript" src="./js/data/sets/gen9.js?1c7ee020"></script>
-    <script type="text/javascript" src="./js/data/sets/gen8.js?f5f0d714"></script>
-    <script type="text/javascript" src="./js/data/sets/gen7.js?9fa24583"></script>
-    <script type="text/javascript" src="./js/data/sets/gen6.js?66dfdacf"></script>
-    <script type="text/javascript" src="./js/data/sets/gen5.js?fc74363c"></script>
-    <script type="text/javascript" src="./js/data/sets/gen4.js?4dd209ed"></script>
-    <script type="text/javascript" src="./js/data/sets/gen3.js?2776f394"></script>
-    <script type="text/javascript" src="./js/data/sets/gen2.js?8534fa4a"></script>
-    <script type="text/javascript" src="./js/data/sets/gen1.js?41183d3b"></script> -->
+	 <!-- <script type="text/javascript" src="./js/data/sets/gen9.js?f1756ba1"></script>
+    <script type="text/javascript" src="./js/data/sets/gen8.js?fd6f7f1e"></script>
+    <script type="text/javascript" src="./js/data/sets/gen7.js?341476ae"></script>
+    <script type="text/javascript" src="./js/data/sets/gen6.js?e8927608"></script>
+    <script type="text/javascript" src="./js/data/sets/gen5.js?34eb6961"></script>
+    <script type="text/javascript" src="./js/data/sets/gen4.js?2b2d2ee9"></script>
+    <script type="text/javascript" src="./js/data/sets/gen3.js?4ca1059c"></script>
+    <script type="text/javascript" src="./js/data/sets/gen2.js?d6671e2c"></script>
+    <script type="text/javascript" src="./js/data/sets/gen1.js?ea3689d6"></script> -->
     <script type="text/javascript" src="./calc/data/types.js?3267f790"></script>
     <script type="text/javascript" src="./calc/data/natures.js?28612810"></script>
     <script type="text/javascript" src="./calc/data/abilities.js?38448e91"></script>
@@ -1677,11 +1690,11 @@
     <script type="text/javascript" src="./calc/data/items.js?0409f13e"></script>
     <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
     <script type="text/javascript" src="./calc/move.js?57ab9f0a"></script>
-    <script type="text/javascript" src="./calc/pokemon.js?2d3f910e"></script>
+    <script type="text/javascript" src="./calc/pokemon.js?4b7c0c13"></script>
     <script type="text/javascript" src="./calc/field.js?aa34f917"></script>
     <script type="text/javascript" src="./calc/items.js?10064fda"></script>
     <script type="text/javascript" src="./calc/mechanics/util.js?910b9a7c"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen789.js?a83aafc8"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen789.js?888cf8bf"></script>
     <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
     <script type="text/javascript" src="./calc/mechanics/gen4.js?dc25f845"></script>
     <script type="text/javascript" src="./calc/mechanics/gen3.js?2037ac24"></script>
@@ -1702,6 +1715,9 @@
     <ul><li><a href="https://github.com/smogon/damage-calc/contributors" target="_blank">Contributors</a></li>
     <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" target="_blank">Bug Reports</a></li>
     <li><a href="https://github.com/smogon/damage-calc" target="_blank">Original GitHub repository</a></li></ul>
+
+    <button type="button" id="dark-theme-toggle"></button>
+    <script type="text/javascript" src="./js/dark-theme-toggle.js?36af0255"></script>
 </div>
 
 </body>

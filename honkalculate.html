@@ -8,7 +8,8 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/colvis/1.1.1/css/dataTables.colVis.css" />
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?fa61bbf2" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?16b5cf35" />
+    <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26211653-3"></script>
     <script>
@@ -23,9 +24,21 @@
             return false;
         };
     </script>
+    <!-- Immediately loads the dark theme in order to reduce FOIT -->
+    <script>
+        /*
+        * localStorage will only store strings
+        * This means that if it has the value 'false',
+        * It will be truey and incorrectly cause the
+        * dark theme to load.
+        */
+        if (localStorage.getItem('darkTheme') !== 'true') {
+            document.getElementById('dark-theme-styles').disabled = true;
+        }
+    </script>
 </head>
 
-<body>
+<body class="dark-theme">
 
 <div class="header"><div class="header-inner">
     <ul class="nav">
@@ -42,9 +55,10 @@
 </div></div>
 <div class="wrapper">
 
-    <div>
-        <span class="title-text">Pok&eacute;mon Damage Calculator</span>
+    <span class="title-text main-title-text">Pok&eacute;mon Damage Calculator</span>
+    <div aria-label="Settings" role="region">
         <span class="genSelection" aria-labelledby="selectGenInstruction" role="radiogroup" title="Select the generation.">
+            <span class="visually-hidden" id="selectGenInstruction">Select the generation.</span>
             <input class="gen visually-hidden" type="radio" name="gen" value="1" id="gen1" /><label class="btn btn-small btn-left" for="gen1">RBY</label>
             <input class="gen visually-hidden" type="radio" name="gen" value="2" id="gen2" /><label class="btn btn-small btn-mid" for="gen2">GSC</label>
             <input class="gen visually-hidden" type="radio" name="gen" value="3" id="gen3" /><label class="btn btn-small btn-mid" for="gen3">ADV</label>
@@ -53,13 +67,14 @@
             <input class="gen visually-hidden" type="radio" name="gen" value="6" id="gen6" /><label class="btn btn-small btn-mid" for="gen6">X/Y</label>
             <input class="gen visually-hidden" type="radio" name="gen" value="7" id="gen7" /><label class="btn btn-small btn-mid" for="gen7">S/M</label>
 			   <input class="gen visually-hidden" type="radio" name="gen" value="8" id="gen8" /><label class="btn btn-small btn-mid" for="gen8">S/S</label>
-			   <input class="gen visually-hidden" type="radio" name="gen" value="9" id="gen9" checked="checked" /><label class="btn btn-small btn-right gen-specific g9" for="gen9">S/V</label>
+            <input class="gen visually-hidden" type="radio" name="gen" value="9" id="gen9" checked="checked" /><label class="btn btn-small btn-right" for="gen9">S/V</label>
         </span>
         <span class="modeSelection" aria-labelledby="selectModeInstruction" role="radiogroup" title="Select the calculator's mode of function.">
-            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-one" /><label class="btn btn-left" for="one-vs-one">One vs One</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-all" /><label class="btn btn-mid" for="one-vs-all">One vs All</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" /><label class="btn btn-mid" for="all-vs-one">All vs One</label>
-            <input class="mode visually-hidden" type="radio" name="mode" id="randoms" /><label class="btn btn-right" for="randoms">Random Battles</label>
+            <span class="visually-hidden" id="selectModeInstruction">Select the calculator's mode of function.</span>
+            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-one" checked="checked" /><label class="btn btn-left btn-wide" for="one-vs-one">One vs One</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="one-vs-all" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g6 g7 g8 g9" for="one-vs-all">One vs All</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="all-vs-one" /><label class="btn btn-mid btn-wide gen-specific g3 g4 g5 g6 g7 g8 g9" for="all-vs-one">All vs One</label>
+            <input class="mode visually-hidden" type="radio" name="mode" id="randoms" /><label class="btn btn-right btn-xwide" for="randoms">Random Battles</label>
         </span>
     </div>
     <hr />
@@ -83,7 +98,7 @@
     <div class="panel-group" id="accordion">
         <fieldset class="panel panel-default poke-info" id="p1">
             <legend class="panel-heading panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">>  Pokemon</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsible-link">>  Pokemon</a>
             </legend>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
@@ -584,7 +599,7 @@
         </fieldset>
         <fieldset class="panel panel-default field-info">
             <legend class="panel-heading panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">>  Field</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsible-link">>  Field</a>
             </legend>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
@@ -870,15 +885,15 @@
     <script type="text/javascript" src="./calc/util.js?51463f0d"></script>
     <script type="text/javascript" src="./calc/stats.js?a9e37d1a"></script>
     <script type="text/javascript" src="./calc/data/species.js?402c42af"></script>
-    <script type="text/javascript" src="./js/data/sets/gen9.js?1c7ee020"></script>
-    <script type="text/javascript" src="./js/data/sets/gen8.js?f5f0d714"></script>
-    <script type="text/javascript" src="./js/data/sets/gen7.js?9fa24583"></script>
-    <script type="text/javascript" src="./js/data/sets/gen6.js?66dfdacf"></script>
-    <script type="text/javascript" src="./js/data/sets/gen5.js?fc74363c"></script>
-    <script type="text/javascript" src="./js/data/sets/gen4.js?4dd209ed"></script>
-    <script type="text/javascript" src="./js/data/sets/gen3.js?2776f394"></script>
-    <script type="text/javascript" src="./js/data/sets/gen2.js?8534fa4a"></script>
-    <script type="text/javascript" src="./js/data/sets/gen1.js?41183d3b"></script>
+    <script type="text/javascript" src="./js/data/sets/gen9.js?f1756ba1"></script>
+    <script type="text/javascript" src="./js/data/sets/gen8.js?fd6f7f1e"></script>
+    <script type="text/javascript" src="./js/data/sets/gen7.js?341476ae"></script>
+    <script type="text/javascript" src="./js/data/sets/gen6.js?e8927608"></script>
+    <script type="text/javascript" src="./js/data/sets/gen5.js?34eb6961"></script>
+    <script type="text/javascript" src="./js/data/sets/gen4.js?2b2d2ee9"></script>
+    <script type="text/javascript" src="./js/data/sets/gen3.js?4ca1059c"></script>
+    <script type="text/javascript" src="./js/data/sets/gen2.js?d6671e2c"></script>
+    <script type="text/javascript" src="./js/data/sets/gen1.js?ea3689d6"></script>
     <script type="text/javascript" src="./calc/data/types.js?3267f790"></script>
     <script type="text/javascript" src="./calc/data/natures.js?28612810"></script>
     <script type="text/javascript" src="./calc/data/abilities.js?38448e91"></script>
@@ -886,11 +901,11 @@
     <script type="text/javascript" src="./calc/data/items.js?0409f13e"></script>
     <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
     <script type="text/javascript" src="./calc/move.js?57ab9f0a"></script>
-    <script type="text/javascript" src="./calc/pokemon.js?2d3f910e"></script>
+    <script type="text/javascript" src="./calc/pokemon.js?4b7c0c13"></script>
     <script type="text/javascript" src="./calc/field.js?aa34f917"></script>
     <script type="text/javascript" src="./calc/items.js?10064fda"></script>
     <script type="text/javascript" src="./calc/mechanics/util.js?910b9a7c"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen789.js?a83aafc8"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen789.js?888cf8bf"></script>
     <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
     <script type="text/javascript" src="./calc/mechanics/gen4.js?dc25f845"></script>
     <script type="text/javascript" src="./calc/mechanics/gen3.js?2037ac24"></script>
@@ -904,9 +919,11 @@
     <script type="text/javascript" src="./js/honkalculate_controls.js?2857a4ec"></script>
 
     <div style="clear:both;padding:20px;text-align:left">Created by Honko, maintained by Austin and Kris
-        <ul><li><a href="https://github.com/smogon/damage-calc/contributors" target="_blank">Contributors</a></li>
-        <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" target="_blank">Bug Reports</a></li>
-        <li><a href="https://github.com/smogon/damage-calc" target="_blank">GitHub repository</a></li></ul>
+        <ul><li><a href="https://github.com/smogon/damage-calc/contributors" class="links-lighten" target="_blank">Contributors</a></li>
+        <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" class="links-lighten" target="_blank">Bug Reports</a></li>
+        <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">GitHub repository</a></li></ul>
+        <button type="button" id="dark-theme-toggle"></button>
+        <script type="text/javascript" src="./js/dark-theme-toggle.js?36af0255"></script>
     </div>
 
 </body>

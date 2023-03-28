@@ -319,18 +319,21 @@ function calculateSMSSSV(gen, attacker, defender, move, field) {
     if (attacker.hasAbility('Parental Bond (Child)')) {
         baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 1024) / 4096);
     }
-    var noWeatherBoost = defender.hasItem('Utility Umbrella');
-    if (!noWeatherBoost &&
-        ((field.hasWeather('Sun', 'Harsh Sunshine') && move.hasType('Fire')) ||
-            (field.hasWeather('Rain', 'Heavy Rain') && move.hasType('Water')))) {
+    if (field.hasWeather('Sun') && move.named('Hydro Steam') && !attacker.hasItem('Utility Umbrella')) {
         baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 6144) / 4096);
         desc.weather = field.weather;
     }
-    else if (!noWeatherBoost &&
-        ((field.hasWeather('Sun') && move.hasType('Water') && !move.named('Hydro Steam')) ||
-            (field.hasWeather('Rain') && move.hasType('Fire')))) {
-        baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 2048) / 4096);
-        desc.weather = field.weather;
+    else if (!defender.hasItem('Utility Umbrella')) {
+        if ((field.hasWeather('Sun', 'Harsh Sunshine') && move.hasType('Fire')) ||
+            (field.hasWeather('Rain', 'Heavy Rain') && move.hasType('Water'))) {
+            baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 6144) / 4096);
+            desc.weather = field.weather;
+        }
+        else if ((field.hasWeather('Sun') && move.hasType('Water')) ||
+            (field.hasWeather('Rain') && move.hasType('Fire'))) {
+            baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 2048) / 4096);
+            desc.weather = field.weather;
+        }
     }
     if (hasTerrainSeed(defender) &&
         field.hasTerrain(defender.item.substring(0, defender.item.indexOf(' '))) &&
@@ -515,13 +518,6 @@ function calculateBasePowerSMSSSV(gen, attacker, defender, move, field, hasAteAb
                 basePower = move.bp;
             desc.moveBP = basePower;
             break;
-        case 'Hydro Steam':
-            basePower = move.bp * (field.hasWeather('Sun') ? 1.5 : 1);
-            if (field.hasWeather('Sun') && !attacker.hasItem('Utility Umbrella')) {
-                desc.moveBP = basePower;
-                desc.weather = field.weather;
-            }
-            break;
         case 'Terrain Pulse':
             basePower = move.bp * ((0, util_2.isGrounded)(attacker, field) && field.terrain ? 2 : 1);
             desc.moveBP = basePower;
@@ -531,8 +527,8 @@ function calculateBasePowerSMSSSV(gen, attacker, defender, move, field, hasAteAb
             desc.moveBP = basePower;
             break;
         case 'Psyblade':
-            basePower = move.bp * (((0, util_2.isGrounded)(attacker, field) && field.hasTerrain('Electric')) ? 1.5 : 1);
-            if (field.hasTerrain('Electric') && (0, util_2.isGrounded)(attacker, field)) {
+            basePower = move.bp * (field.hasTerrain('Electric') ? 1.5 : 1);
+            if (field.hasTerrain('Electric')) {
                 desc.moveBP = basePower;
                 desc.terrain = field.terrain;
             }
