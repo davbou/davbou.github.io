@@ -41,12 +41,14 @@ export declare class Side implements State.Side {
     isAtkCheered: boolean;
     isFlowerGift: boolean;
     isFriendGuard: boolean;
+    friendGuards: number;
     isAuroraVeil: boolean;
     isBattery: boolean;
     isPowerSpot: boolean;
     powerSpots: number;
     steelySpirits: number;
     isSwitching?: 'out' | 'in';
+    isCharged: boolean;
     constructor(side?: State.Side);
     clone(): Side;
 }

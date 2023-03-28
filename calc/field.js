@@ -98,12 +98,14 @@ var Side = (function () {
         this.isAtkCheered = !!side.isAtkCheered;
         this.isFlowerGift = !!side.isFlowerGift;
         this.isFriendGuard = !!side.isFriendGuard;
+        this.friendGuards = side.friendGuards || 0;
         this.isAuroraVeil = !!side.isAuroraVeil;
         this.isBattery = !!side.isBattery;
         this.isPowerSpot = !!side.isPowerSpot;
         this.powerSpots = side.powerSpots || 0;
         this.steelySpirits = side.steelySpirits || 0;
         this.isSwitching = side.isSwitching;
+        this.isCharged = !!side.isCharged;
     }
     Side.prototype.clone = function () {
         return new Side(this);

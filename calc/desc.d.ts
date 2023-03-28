@@ -27,6 +27,7 @@ export interface RawDesc {
     isFlowerGiftAttacker?: boolean;
     isFlowerGiftDefender?: boolean;
     isFriendGuard?: boolean;
+    friendGuards?: number;
     isHelpingHand?: boolean;
     isAtkCheered?: boolean;
     isCritical?: boolean;
@@ -49,6 +50,7 @@ export interface RawDesc {
     terrain?: Terrain;
     weather?: Weather;
     isDefenderDynamaxed?: boolean;
+    isCharged?: boolean;
 }
 export declare function display(gen: Generation, attacker: Pokemon, defender: Pokemon, move: Move, field: Field, damage: Damage, rawDesc: RawDesc, notation?: string, err?: boolean): string;
 export declare function displayMove(gen: Generation, attacker: Pokemon, defender: Pokemon, move: Move, damage: Damage, notation?: string): string;

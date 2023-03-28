@@ -725,6 +725,10 @@ function calculateBPModsSMSSSV(gen, attacker, defender, move, field, desc, baseP
         }
         desc.steelySpirits = field.attackerSide.steelySpirits;
     }
+    if (field.attackerSide.isCharged && move.hasType('Electric')) {
+        bpMods.push(8196);
+        desc.isCharged = true;
+    }
     var aura = "".concat(move.type, " Aura");
     var isAttackerAura = attacker.hasAbility(aura);
     var isDefenderAura = defender.hasAbility(aura);
@@ -1156,6 +1160,12 @@ function calculateFinalModsSMSSSV(gen, attacker, defender, move, field, desc, is
     if (field.defenderSide.isFriendGuard) {
         finalMods.push(3072);
         desc.isFriendGuard = true;
+    }
+    if (field.defenderSide.friendGuards > 0) {
+        for (var i = 0; i < field.defenderSide.friendGuards; ++i) {
+            finalMods.push(3072);
+        }
+        desc.friendGuards = field.defenderSide.friendGuards;
     }
     if (defender.hasAbility('Fluffy') && move.hasType('Fire')) {
         finalMods.push(8192);

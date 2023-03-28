@@ -739,6 +739,9 @@ function buildDescription(description, attacker, defender) {
     if (description.isSwitching) {
         output += ' switching boosted ';
     }
+    if (description.isCharged) {
+        output += ' charged ';
+    }
     output += description.moveName + ' ';
     if (description.moveBP && description.moveType) {
         output += '(' + description.moveBP + ' BP ' + description.moveType + ') ';
@@ -810,6 +813,9 @@ function buildDescription(description, attacker, defender) {
     }
     if (description.isFriendGuard) {
         output += ' with an ally\'s Friend Guard';
+    }
+    if (description.friendGuards) {
+        output += " with ".concat(description.friendGuards, " ").concat(description.friendGuards > 1 ? "allies'" : "ally's", " Friend Guard").concat(description.steelySpirits === 1 ? '' : 's');
     }
     if (description.isAuroraVeil) {
         output += ' with an ally\'s Aurora Veil';
