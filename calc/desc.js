@@ -719,7 +719,10 @@ function buildDescription(description, attacker, defender) {
         output += 'Helping Hand ';
     }
     if (description.isAtkCheered) {
-        output += 'Atk cheer ';
+        output += 'Atk Cheer ';
+    }
+    if (description.isDefCheeredBodyPress) {
+        output += 'Def Cheer ';
     }
     if (description.isFlowerGiftAttacker) {
         output += ' with an ally\'s Flower Gift ';
@@ -805,7 +808,7 @@ function buildDescription(description, attacker, defender) {
             output += ' and Def Cheer';
         }
         else {
-            output += ' through Def cheer';
+            output += ' through Def Cheer';
         }
     }
     if (description.isFlowerGiftDefender) {

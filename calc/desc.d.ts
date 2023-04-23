@@ -33,6 +33,7 @@ export interface RawDesc {
     isCritical?: boolean;
     isLightScreen?: boolean;
     isDefCheered?: boolean;
+    isDefCheeredBodyPress?: boolean;
     isBurned?: boolean;
     isProtected?: boolean;
     isReflect?: boolean;
