@@ -149,11 +149,7 @@ function getFinalSpeed(gen, pokemon, field, side) {
     else if (pokemon.hasAbility('Slow Start') && pokemon.abilityOn) {
         speedMods.push(2048);
     }
-    else if (getMostProficientStat(pokemon, gen) === 'spe' &&
-        ((pokemon.hasAbility('Protosynthesis') &&
-            (weather.includes('Sun') || pokemon.hasItem('Booster Energy'))) ||
-            (pokemon.hasAbility('Quark Drive') &&
-                (terrain === 'Electric' || pokemon.hasItem('Booster Energy'))))) {
+    else if (isQPActive(pokemon, field) && getQPBoostedStat(pokemon, gen) === 'spe') {
         speedMods.push(6144);
     }
     if (pokemon.hasItem('Choice Scarf')) {
@@ -408,8 +404,11 @@ function getBaseDamage(level, basePower, attack, defense) {
     return Math.floor(OF32(Math.floor(OF32(OF32(Math.floor((2 * level) / 5 + 2) * basePower) * attack) / defense) / 50 + 2));
 }
 exports.getBaseDamage = getBaseDamage;
-function getMostProficientStat(pokemon, gen) {
+function getQPBoostedStat(pokemon, gen) {
     var e_4, _a;
+    if (pokemon.boostedStat && pokemon.boostedStat !== 'auto') {
+        return pokemon.boostedStat;
+    }
     var bestStat = 'atk';
     try {
         for (var _b = __values(['def', 'spa', 'spd', 'spe']), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -429,7 +428,23 @@ function getMostProficientStat(pokemon, gen) {
     }
     return bestStat;
 }
-exports.getMostProficientStat = getMostProficientStat;
+exports.getQPBoostedStat = getQPBoostedStat;
+function isQPActive(pokemon, field) {
+    if (!pokemon.boostedStat) {
+        return false;
+    }
+    var weather = field.weather || '';
+    var terrain = field.terrain;
+    if ((pokemon.hasAbility('Protosynthesis') &&
+        (weather.includes('Sun') || pokemon.hasItem('Booster Energy'))) ||
+        (pokemon.hasAbility('Quark Drive') &&
+            (terrain === 'Electric' || pokemon.hasItem('Booster Energy'))) ||
+        (pokemon.boostedStat !== 'auto')) {
+        return true;
+    }
+    return false;
+}
+exports.isQPActive = isQPActive;
 function getFinalDamage(baseAmount, i, effectiveness, isBurned, stabMod, finalMod, protect) {
     var damageAmount = Math.floor(OF32(baseAmount * (85 + i)) / 100);
     if (stabMod !== 4096)

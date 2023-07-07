@@ -47,7 +47,7 @@
                         <a class="button" href="//pokemonshowdown.com">
                             <img src="./img/pokemonshowdownbeta.png" alt="Pok&eacute;mon Showdown! (beta)" /> Home</a>
                         <a class="button greenbutton" href="//play.pokemonshowdown.com/">Play</a>
-                        <button id="dark-theme-toggle"></button>
+                        <a class="button" id="dark-theme-toggle"></a>
                         <script type="text/javascript" src="./js/dark-theme-toggle.js?"></script>
 
                     </li>
@@ -497,16 +497,24 @@
                     <div class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                         <label for="abilityL1">Ability</label>
                         <select class="ability terrain-trigger calc-trigger" id="abilityL1"></select>
-                        <input hidden type="checkbox" title="Is this ability active?"
-                            class="abilityToggle calc-trigger">
-                        <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
-                            <option value="0">Zero allies fainted</option>
-                            <option value="1">One ally fainted</option>
-                            <option value="2">Two allies fainted</option>
-                            <option value="3">Three allies fainted</option>
-                            <option value="4">Four allies fainted</option>
-                            <option value="5">Five allies fainted</option>
-                        </select>
+                        <input hidden type="checkbox" title="Is this ability active?" class="abilityToggle calc-trigger">
+                            <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
+                                <option value="0">Zero allies fainted</option>
+                                <option value="1">One ally fainted</option>
+                                <option value="2">Two allies fainted</option>
+                                <option value="3">Three allies fainted</option>
+                                <option value="4">Four allies fainted</option>
+                                <option value="5">Five allies fainted</option>
+                            </select>
+                            <select hidden aria-label="Boosted Stat" title="What stat is boosted by this ability?" class="boostedStat calc-trigger">
+                                <option value="auto">Auto-Select</option>
+                                <option value="">Inactive</option>
+                                <option value="atk">Attack</option>
+                                <option value="def">Defense</option>
+                                <option value="spa">Special Attack</option>
+                                <option value="spd">Special Defense</option>
+                                <option value="spe">Speed</option>
+                            </select>
                     </div>
                     <div class="gen-specific g2 g3 g4 g5 g6 g7 g8 g9">
                         <label for="itemL1">Item</label>
@@ -1465,16 +1473,24 @@
                     <div class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                         <label for="abilityR1">Ability</label>
                         <select class="ability terrain-trigger calc-trigger" id="abilityR1"></select>
-                        <input hidden type="checkbox" title="Is this ability active?"
-                            class="abilityToggle calc-trigger">
-                        <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
-                            <option value="0">Zero allies fainted</option>
-                            <option value="1">One ally fainted</option>
-                            <option value="2">Two allies fainted</option>
-                            <option value="3">Three allies fainted</option>
-                            <option value="4">Four allies fainted</option>
-                            <option value="5">Five allies fainted</option>
-                        </select>
+                        <input hidden type="checkbox" title="Is this ability active?" class="abilityToggle calc-trigger">
+                            <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
+                                <option value="0">Zero allies fainted</option>
+                                <option value="1">One ally fainted</option>
+                                <option value="2">Two allies fainted</option>
+                                <option value="3">Three allies fainted</option>
+                                <option value="4">Four allies fainted</option>
+                                <option value="5">Five allies fainted</option>
+                            </select>
+                            <select hidden aria-label="Boosted Stat" title="What stat is boosted by this ability?" class="boostedStat calc-trigger">
+                                <option value="auto">Auto-Select</option>
+                                <option value="">Inactive</option>
+                                <option value="atk">Attack</option>
+                                <option value="def">Defense</option>
+                                <option value="spa">Special Attack</option>
+                                <option value="spd">Special Defense</option>
+                                <option value="spe">Speed</option>
+                            </select>
                     </div>
                     <div class="gen-specific g2 g3 g4 g5 g6 g7 g8 g9">
                         <label for="itemR1">Item</label>
@@ -1741,8 +1757,10 @@
         Raiding fork by Dav &#x1F49A;, <a href="https://github.com/davbou/damage-calc" target="_blank"> hosted here </a>
         <br/>
         Erik (lookoutnorthamerica) did some minor tweaking as well.
-		  <br/>
-		  lsparlin (Lewis) mobile fit and other small contributions.
+		<br/>
+		lsparlin (Lewis) mobile fit and other small contributions.
+        <br/>
+        EZ (Gimikyu) made some minor adjustments.
         <br/>
         <a href="https://calc.pokemonshowdown.com/">Original</a> by Honko, maintained by Austin and Kris
         <br/>

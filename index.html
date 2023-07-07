@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pok&eacute;mon Damage Calculator (Raiding fork)</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?294efe80" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?1041da00" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -47,7 +47,7 @@
                         <a class="button" href="//pokemonshowdown.com">
                             <img src="./img/pokemonshowdownbeta.png" alt="Pok&eacute;mon Showdown! (beta)" /> Home</a>
                         <a class="button greenbutton" href="//play.pokemonshowdown.com/">Play</a>
-                        <button id="dark-theme-toggle"></button>
+                        <a class="button" id="dark-theme-toggle"></a>
                         <script type="text/javascript" src="./js/dark-theme-toggle.js?36af0255"></script>
 
                     </li>
@@ -497,16 +497,24 @@
                     <div class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                         <label for="abilityL1">Ability</label>
                         <select class="ability terrain-trigger calc-trigger" id="abilityL1"></select>
-                        <input hidden type="checkbox" title="Is this ability active?"
-                            class="abilityToggle calc-trigger">
-                        <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
-                            <option value="0">Zero allies fainted</option>
-                            <option value="1">One ally fainted</option>
-                            <option value="2">Two allies fainted</option>
-                            <option value="3">Three allies fainted</option>
-                            <option value="4">Four allies fainted</option>
-                            <option value="5">Five allies fainted</option>
-                        </select>
+                        <input hidden type="checkbox" title="Is this ability active?" class="abilityToggle calc-trigger">
+                            <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
+                                <option value="0">Zero allies fainted</option>
+                                <option value="1">One ally fainted</option>
+                                <option value="2">Two allies fainted</option>
+                                <option value="3">Three allies fainted</option>
+                                <option value="4">Four allies fainted</option>
+                                <option value="5">Five allies fainted</option>
+                            </select>
+                            <select hidden aria-label="Boosted Stat" title="What stat is boosted by this ability?" class="boostedStat calc-trigger">
+                                <option value="auto">Auto-Select</option>
+                                <option value="">Inactive</option>
+                                <option value="atk">Attack</option>
+                                <option value="def">Defense</option>
+                                <option value="spa">Special Attack</option>
+                                <option value="spd">Special Defense</option>
+                                <option value="spe">Speed</option>
+                            </select>
                     </div>
                     <div class="gen-specific g2 g3 g4 g5 g6 g7 g8 g9">
                         <label for="itemL1">Item</label>
@@ -1465,16 +1473,24 @@
                     <div class="gen-specific g3 g4 g5 g6 g7 g8 g9">
                         <label for="abilityR1">Ability</label>
                         <select class="ability terrain-trigger calc-trigger" id="abilityR1"></select>
-                        <input hidden type="checkbox" title="Is this ability active?"
-                            class="abilityToggle calc-trigger">
-                        <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
-                            <option value="0">Zero allies fainted</option>
-                            <option value="1">One ally fainted</option>
-                            <option value="2">Two allies fainted</option>
-                            <option value="3">Three allies fainted</option>
-                            <option value="4">Four allies fainted</option>
-                            <option value="5">Five allies fainted</option>
-                        </select>
+                        <input hidden type="checkbox" title="Is this ability active?" class="abilityToggle calc-trigger">
+                            <select hidden aria-label="Allies fainted" class="alliesFainted calc-trigger">
+                                <option value="0">Zero allies fainted</option>
+                                <option value="1">One ally fainted</option>
+                                <option value="2">Two allies fainted</option>
+                                <option value="3">Three allies fainted</option>
+                                <option value="4">Four allies fainted</option>
+                                <option value="5">Five allies fainted</option>
+                            </select>
+                            <select hidden aria-label="Boosted Stat" title="What stat is boosted by this ability?" class="boostedStat calc-trigger">
+                                <option value="auto">Auto-Select</option>
+                                <option value="">Inactive</option>
+                                <option value="atk">Attack</option>
+                                <option value="def">Defense</option>
+                                <option value="spa">Special Attack</option>
+                                <option value="spd">Special Defense</option>
+                                <option value="spe">Speed</option>
+                            </select>
                     </div>
                     <div class="gen-specific g2 g3 g4 g5 g6 g7 g8 g9">
                         <label for="itemR1">Item</label>
@@ -1700,16 +1716,16 @@
         <script type="text/javascript" src="./calc/util.js?51463f0d"></script>
         <script type="text/javascript" src="./calc/stats.js?a9e37d1a"></script>
         <script type="text/javascript" src="./calc/data/species.js?402c42af"></script>
-        <script type="text/javascript" src="./js/data/sets/raid_bosses.js?0a6db58a"></script>
-        <!-- <script type="text/javascript" src="./js/data/sets/gen9.js?8e36bbdc"></script>
-    <script type="text/javascript" src="./js/data/sets/gen8.js?cbf6d037"></script>
-    <script type="text/javascript" src="./js/data/sets/gen7.js?c2bf1c64"></script>
-    <script type="text/javascript" src="./js/data/sets/gen6.js?e8927608"></script>
-    <script type="text/javascript" src="./js/data/sets/gen5.js?70deafc6"></script>
-    <script type="text/javascript" src="./js/data/sets/gen4.js?eb2e38bf"></script>
+        <script type="text/javascript" src="./js/data/sets/raid_bosses.js?0c053c71"></script>
+        <!-- <script type="text/javascript" src="./js/data/sets/gen9.js?bc3d7715"></script>
+    <script type="text/javascript" src="./js/data/sets/gen8.js?13a6f644"></script>
+    <script type="text/javascript" src="./js/data/sets/gen7.js?35afed5c"></script>
+    <script type="text/javascript" src="./js/data/sets/gen6.js?676c38b7"></script>
+    <script type="text/javascript" src="./js/data/sets/gen5.js?63acfdec"></script>
+    <script type="text/javascript" src="./js/data/sets/gen4.js?f816aa0a"></script>
     <script type="text/javascript" src="./js/data/sets/gen3.js?f7c78867"></script>
     <script type="text/javascript" src="./js/data/sets/gen2.js?d6671e2c"></script>
-    <script type="text/javascript" src="./js/data/sets/gen1.js?a61a375f"></script> -->
+    <script type="text/javascript" src="./js/data/sets/gen1.js?5339a81a"></script> -->
         <script type="text/javascript" src="./calc/data/types.js?3267f790"></script>
         <script type="text/javascript" src="./calc/data/natures.js?28612810"></script>
         <script type="text/javascript" src="./calc/data/abilities.js?38448e91"></script>
@@ -1717,11 +1733,11 @@
         <script type="text/javascript" src="./calc/data/items.js?0409f13e"></script>
         <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
         <script type="text/javascript" src="./calc/move.js?57ab9f0a"></script>
-        <script type="text/javascript" src="./calc/pokemon.js?4b7c0c13"></script>
+        <script type="text/javascript" src="./calc/pokemon.js?a9629f82"></script>
         <script type="text/javascript" src="./calc/field.js?aa34f917"></script>
         <script type="text/javascript" src="./calc/items.js?10064fda"></script>
-        <script type="text/javascript" src="./calc/mechanics/util.js?910b9a7c"></script>
-        <script type="text/javascript" src="./calc/mechanics/gen789.js?95cb7037"></script>
+        <script type="text/javascript" src="./calc/mechanics/util.js?1e4de307"></script>
+        <script type="text/javascript" src="./calc/mechanics/gen789.js?6cb4b215"></script>
         <script type="text/javascript" src="./calc/mechanics/gen56.js?a1115b60"></script>
         <script type="text/javascript" src="./calc/mechanics/gen4.js?dc25f845"></script>
         <script type="text/javascript" src="./calc/mechanics/gen3.js?2037ac24"></script>
@@ -1731,7 +1747,7 @@
         <script type="text/javascript" src="./calc/result.js?9f8881b5"></script>
         <script type="text/javascript" src="./calc/adaptable.js?92e49194"></script>
         <script type="text/javascript" src="./calc/index.js?0b1745b9"></script>
-        <script type="text/javascript" src="./js/shared_controls.js?54e1da98"></script>
+        <script type="text/javascript" src="./js/shared_controls.js?81204f91"></script>
         <script type="text/javascript" src="./js/index_randoms_controls.js?87d3bda8"></script>
         <script type="text/javascript" src="./js/moveset_import.js?9b45727b"></script>
     </div>
@@ -1741,8 +1757,10 @@
         Raiding fork by Dav &#x1F49A;, <a href="https://github.com/davbou/damage-calc" target="_blank"> hosted here </a>
         <br/>
         Erik (lookoutnorthamerica) did some minor tweaking as well.
-		  <br/>
-		  lsparlin (Lewis) mobile fit and other small contributions.
+		<br/>
+		lsparlin (Lewis) mobile fit and other small contributions.
+        <br/>
+        EZ (Gimikyu) made some minor adjustments.
         <br/>
         <a href="https://calc.pokemonshowdown.com/">Original</a> by Honko, maintained by Austin and Kris
         <br/>

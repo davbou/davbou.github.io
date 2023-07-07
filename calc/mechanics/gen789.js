@@ -955,13 +955,9 @@ function calculateAtModsSMSSSV(gen, attacker, defender, move, field, desc) {
         }
         atMods.push(3072);
     }
-    if ((attacker.hasAbility('Protosynthesis') &&
-        (field.hasWeather('Sun') || attacker.hasItem('Booster Energy'))) ||
-        (attacker.hasAbility('Quark Drive') &&
-            (field.hasTerrain('Electric') || attacker.hasItem('Booster Energy')))) {
-        if ((move.category === 'Physical' &&
-            (0, util_2.getMostProficientStat)(attacker) === 'atk') ||
-            (move.category === 'Special' && (0, util_2.getMostProficientStat)(attacker) === 'spa')) {
+    if (((0, util_2.isQPActive)(attacker, field))) {
+        if ((move.category === 'Physical' && (0, util_2.getQPBoostedStat)(attacker) === 'atk') ||
+            (move.category === 'Special' && (0, util_2.getQPBoostedStat)(attacker) === 'spa')) {
             atMods.push(5325);
             desc.attackerAbility = attacker.ability;
         }
@@ -1082,12 +1078,9 @@ function calculateDfModsSMSSSV(gen, attacker, defender, move, field, desc, isCri
         }
         dfMods.push(3072);
     }
-    if ((defender.hasAbility('Protosynthesis') &&
-        (field.hasWeather('Sun') || attacker.hasItem('Booster Energy'))) ||
-        (defender.hasAbility('Quark Drive') &&
-            (field.hasTerrain('Electric') || attacker.hasItem('Booster Energy')))) {
-        if ((hitsPhysical && (0, util_2.getMostProficientStat)(defender) === 'def') ||
-            (!hitsPhysical && (0, util_2.getMostProficientStat)(defender) === 'spd')) {
+    if (((0, util_2.isQPActive)(defender, field))) {
+        if ((hitsPhysical && (0, util_2.getQPBoostedStat)(defender) === 'def') ||
+            (!hitsPhysical && (0, util_2.getQPBoostedStat)(defender) === 'spd')) {
             desc.defenderAbility = defender.ability;
             dfMods.push(5324);
         }

@@ -79,12 +79,27 @@ for (var bounded in bounds) {
 	attachValidation(bounded, bounds[bounded][0], bounds[bounded][1]);
 }
 function attachValidation(clazz, min, max) {
-	$("." + clazz).keyup(function () {
-		validate($(this), min, max);
-	});
+	if (clazz === "bossMultiplier") {
+		$("." + clazz).focusout(function () {
+			validate($(this), min, max);
+		});
+	} else {
+		$("." + clazz).keyup(function () {
+			validate($(this), min, max);
+		});
+	}
 }
 function validate(obj, min, max) {
-	obj.val(Math.max(min, Math.min(max, ~~obj.val())));
+	obj.val(clamp(sanitize(obj.val()), min, max));
+}
+
+function clamp(value, min, max) {
+	return Math.max(min, Math.min(max, value));
+}
+
+function sanitize(value) {
+	var sanitized = parseInt(value);
+	return isNaN(sanitized) ? 0 : sanitized;
 }
 
 $("input:radio[name='format']").change(function () {
@@ -237,6 +252,14 @@ $(".ability").bind("keyup change", function () {
 	} else {
 		$(this).closest(".poke-info").find(".abilityToggle").hide();
 	}
+	var boostedStat = $(this).closest(".poke-info").find(".boostedStat");
+
+	if (ability === "Protosynthesis" || ability === "Quark Drive") {
+		boostedStat.show();
+		autosetQP($(this).closest(".poke-info"));
+	} else {
+		boostedStat.hide();
+	}
 
 	if (ability === "Supreme Overlord") {
 		$(this).closest(".poke-info").find(".alliesFainted").show();
@@ -247,9 +270,38 @@ $(".ability").bind("keyup change", function () {
 	}
 });
 
+function autosetQP(pokemon) {
+	var currentWeather = $("input:radio[name='weather']:checked").val();
+	var currentTerrain = $("input:checkbox[name='terrain']:checked").val() || "No terrain";
+
+	var item = pokemon.find(".item").val();
+	var ability = pokemon.find(".ability").val();
+	var boostedStat = pokemon.find(".boostedStat").val();
+
+	if (!boostedStat || boostedStat === "auto") {
+		if (
+			(item === "Booster Energy") ||
+			(ability === "Protosynthesis" && currentWeather === "Sun") ||
+			(ability === "Quark Drive" && currentTerrain === "Electric")
+		) {
+			pokemon.find(".boostedStat").val("auto");
+		} else {
+			pokemon.find(".boostedStat").val("");
+		}
+	}
+}
+
 $("#p1 .ability").bind("keyup change", function () {
 	autosetWeather($(this).val(), 0);
 	autosetTerrain($(this).val(), 0);
+	autosetQP($(this).closest(".poke-info"));
+});
+
+$("input[name='weather']").change(function () {
+	var allPokemon = $('.poke-info');
+	allPokemon.each(function () {
+		autosetQP($(this));
+	});
 });
 
 var lastManualWeather = "";
@@ -302,6 +354,13 @@ function autosetWeather(ability, i) {
 		break;
 	}
 }
+
+$("input[name='terrain']").change(function () {
+	var allPokemon = $('.poke-info');
+	allPokemon.each(function () {
+		autosetQP($(this));
+	});
+});
 
 var lastManualTerrain = "";
 var lastAutoTerrain = ["", ""];
@@ -467,6 +526,7 @@ $(".item").change(function () {
 	} else {
 		$metronomeControl.hide();
 	}
+	autosetQP($(this).closest(".poke-info"));
 });
 
 function smogonAnalysis(pokemonName) {
@@ -486,6 +546,7 @@ $(".set-selector").change(function () {
 			stickyMoves.clearStickyMove();
 		}
 		pokeObj.find(".teraToggle").prop("checked", false);
+		pokeObj.find(".boostedStat").val("");
 		pokeObj.find(".analysis").attr("href", smogonAnalysis(pokemonName));
 		pokeObj.find(".type1").val(pokemon.types[0]);
 		pokeObj.find(".type2").val(pokemon.types[1]);
@@ -867,7 +928,7 @@ function createPokemon(pokeInfo) {
 		var types = [pokeInfo.find(".type1").val(), pokeInfo.find(".type2").val()];
 		return new calc.Pokemon(gen, name, {
 			level: ~~pokeInfo.find(".level").val(),
-            bossMultiplier: ~~pokeInfo.find(".bossMultiplier").val(),
+            bossMultiplier: clamp(sanitize(pokeInfo.find(".bossMultiplier").val()), bounds["bossMultiplier"][0], bounds["bossMultiplier"][1]),
 			ability: ability,
 			abilityOn: pokeInfo.find(".abilityToggle").is(":checked"),
 			item: item,
@@ -878,6 +939,7 @@ function createPokemon(pokeInfo) {
 			isDynamaxed: isDynamaxed,
 			isSaltCure: pokeInfo.find(".saltcure").is(":checked"),
 			alliesFainted: parseInt(pokeInfo.find(".alliesFainted").val()),
+			boostedStat: pokeInfo.find(".boostedStat").val() || undefined,
 			teraType: teraType,
 			boosts: boosts,
 			curHP: curHP,
@@ -1029,7 +1091,10 @@ function calcStat(poke, StatID) {
 	}
 
     if (gen === 9 && StatID === "hp"){
-        total *= ~~(poke.find(".bossMultiplier").val()/100);
+		var boss_multiplier = sanitize(poke.find(".bossMultiplier").val());
+		var min = bounds["bossMultiplier"][0]
+		var max = bounds["bossMultiplier"][1]
+		total *= (clamp(boss_multiplier, min, max) / 100)
     }
 	stat.find(".total").text(total);
 	return total;
