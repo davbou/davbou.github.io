@@ -31,6 +31,7 @@ export interface RawDesc {
     isHelpingHand?: boolean;
     isAtkCheered?: boolean;
     isCritical?: boolean;
+    isSpread?: boolean;
     isLightScreen?: boolean;
     isDefCheered?: boolean;
     isDefCheeredBodyPress?: boolean;

@@ -826,6 +826,9 @@ function buildDescription(description, attacker, defender) {
     if (description.isCritical) {
         output += ' on a critical hit';
     }
+    if (description.isSpread) {
+        output += ' with spread damage';
+    }
     if (description.isWonderRoom) {
         output += ' in Wonder Room';
     }
