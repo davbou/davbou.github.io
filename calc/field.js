@@ -104,6 +104,7 @@ var Side = (function () {
         this.isPowerSpot = !!side.isPowerSpot;
         this.powerSpots = side.powerSpots || 0;
         this.steelySpirits = side.steelySpirits || 0;
+        this.batterys = side.batterys || 0;
         this.isSwitching = side.isSwitching;
         this.isCharged = !!side.isCharged;
     }

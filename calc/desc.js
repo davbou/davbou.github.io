@@ -730,6 +730,9 @@ function buildDescription(description, attacker, defender) {
     if (description.isBattery) {
         output += ' Battery boosted ';
     }
+    if (description.batterys) {
+        output += "with ".concat(description.batterys, " Battery ").concat(description.batterys === 1 ? 'boost' : 'boosts', " ");
+    }
     if (description.isPowerSpot) {
         output += ' Power Spot boosted ';
     }
@@ -818,7 +821,7 @@ function buildDescription(description, attacker, defender) {
         output += ' with an ally\'s Friend Guard';
     }
     if (description.friendGuards) {
-        output += " with ".concat(description.friendGuards, " ").concat(description.friendGuards > 1 ? "allies'" : "ally's", " Friend Guard").concat(description.steelySpirits === 1 ? '' : 's');
+        output += " with ".concat(description.friendGuards, " ").concat(description.friendGuards > 1 ? "allies'" : "ally's", " Friend Guard").concat(description.friendGuards === 1 ? '' : 's');
     }
     if (description.isAuroraVeil) {
         output += ' with an ally\'s Aurora Veil';

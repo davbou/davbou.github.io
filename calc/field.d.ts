@@ -47,6 +47,7 @@ export declare class Side implements State.Side {
     isPowerSpot: boolean;
     powerSpots: number;
     steelySpirits: number;
+    batterys: number;
     isSwitching?: 'out' | 'in';
     isCharged: boolean;
     constructor(side?: State.Side);

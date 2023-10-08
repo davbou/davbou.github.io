@@ -49,6 +49,7 @@ export interface RawDesc {
     powerSpots?: number;
     rivalry?: 'buffed' | 'nerfed';
     steelySpirits?: number;
+    batterys?: number;
     terrain?: Terrain;
     weather?: Weather;
     isDefenderDynamaxed?: boolean;
