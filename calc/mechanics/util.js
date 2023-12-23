@@ -194,6 +194,13 @@ function checkAirLock(pokemon, field) {
     }
 }
 exports.checkAirLock = checkAirLock;
+function checkTeraformZero(pokemon, field) {
+    if (pokemon.hasAbility('Teraform Zero') && pokemon.abilityOn) {
+        field.weather = undefined;
+        field.terrain = undefined;
+    }
+}
+exports.checkTeraformZero = checkTeraformZero;
 function checkForecast(pokemon, weather) {
     if (pokemon.hasAbility('Forecast') && pokemon.named('Castform')) {
         switch (weather) {
@@ -216,6 +223,8 @@ function checkForecast(pokemon, weather) {
 }
 exports.checkForecast = checkForecast;
 function checkItem(pokemon, magicRoomActive) {
+    if (pokemon.gen.num === 4 && pokemon.hasItem('Iron Ball'))
+        return;
     if (pokemon.hasAbility('Klutz') && !EV_ITEMS.includes(pokemon.item) ||
         magicRoomActive) {
         pokemon.item = '';
@@ -266,13 +275,13 @@ function checkDownload(source, target, wonderRoomActive) {
 }
 exports.checkDownload = checkDownload;
 function checkIntrepidSword(source, gen) {
-    if (source.hasAbility('Intrepid Sword') && gen.num < 9) {
+    if (source.hasAbility('Intrepid Sword') && gen.num > 7) {
         source.boosts.atk = Math.min(6, source.boosts.atk + 1);
     }
 }
 exports.checkIntrepidSword = checkIntrepidSword;
 function checkDauntlessShield(source, gen) {
-    if (source.hasAbility('Dauntless Shield') && gen.num < 9) {
+    if (source.hasAbility('Dauntless Shield') && gen.num > 7) {
         source.boosts.def = Math.min(6, source.boosts.def + 1);
     }
 }
@@ -454,14 +463,11 @@ function isQPActive(pokemon, field) {
     }
     var weather = field.weather || '';
     var terrain = field.terrain;
-    if ((pokemon.hasAbility('Protosynthesis') &&
+    return ((pokemon.hasAbility('Protosynthesis') &&
         (weather.includes('Sun') || pokemon.hasItem('Booster Energy'))) ||
         (pokemon.hasAbility('Quark Drive') &&
             (terrain === 'Electric' || pokemon.hasItem('Booster Energy'))) ||
-        (pokemon.boostedStat !== 'auto')) {
-        return true;
-    }
-    return false;
+        (pokemon.boostedStat !== 'auto'));
 }
 exports.isQPActive = isQPActive;
 function getFinalDamage(baseAmount, i, effectiveness, isBurned, stabMod, finalMod, protect) {
