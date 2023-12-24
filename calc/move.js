@@ -73,6 +73,7 @@ var Move = (function () {
             this.dropsStats = Math.abs(data.self.boosts[stat]);
         }
         this.timesUsed = (this.dropsStats && options.timesUsed) || 1;
+        this.isSpread = !!options.isSpread;
         this.secondaries = data.secondaries;
         this.target = data.target || 'any';
         this.recoil = data.recoil;
@@ -124,6 +125,7 @@ var Move = (function () {
             isStellarFirstUse: this.isStellarFirstUse,
             hits: this.hits,
             timesUsed: this.timesUsed,
+            isSpread: this.isSpread,
             timesUsedWithMetronome: this.timesUsedWithMetronome,
             overrides: this.overrides
         });

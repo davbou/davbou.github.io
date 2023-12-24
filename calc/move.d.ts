@@ -25,6 +25,7 @@ export declare class Move implements State.Move {
     struggleRecoil: boolean;
     isCrit: boolean;
     isStellarFirstUse: boolean;
+    isSpread: boolean;
     drain?: [number, number];
     priority: number;
     dropsStats?: number;
