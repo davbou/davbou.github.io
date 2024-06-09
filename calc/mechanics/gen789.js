@@ -449,9 +449,11 @@ function calculateSMSSSV(gen, attacker, defender, move, field) {
             var damageMultiplier = 0;
             damage = damage.map(function (affectedAmount) {
                 if (times) {
+                    field.attackerSide.isHelpingHand = false;
+                    var newBasePower = calculateBasePowerSMSSSV(gen, attacker, defender, move, field, hasAteAbilityTypeChange, desc);
                     var newFinalMods = calculateFinalModsSMSSSV(gen, attacker, defender, move, field, desc, isCritical, typeEffectiveness, times);
                     var newFinalMod = (0, util_2.chainMods)(newFinalMods, 41, 131072);
-                    var newBaseDamage = calculateBaseDamageSMSSSV(gen, attacker, defender, basePower, attack, newDefense, move, field, desc, isCritical);
+                    var newBaseDamage = calculateBaseDamageSMSSSV(gen, attacker, defender, newBasePower, attack, newDefense, move, field, desc, isCritical);
                     var newFinalDamage = (0, util_2.getFinalDamage)(newBaseDamage, damageMultiplier, typeEffectiveness, applyBurn, stabMod, newFinalMod, protect);
                     damageMultiplier++;
                     return affectedAmount + newFinalDamage;
@@ -679,7 +681,8 @@ function calculateBasePowerSMSSSV(gen, attacker, defender, move, field, hasAteAb
 exports.calculateBasePowerSMSSSV = calculateBasePowerSMSSSV;
 function calculateBPModsSMSSSV(gen, attacker, defender, move, field, desc, basePower, hasAteAbilityTypeChange, turnOrder) {
     var bpMods = [];
-    var resistedKnockOffDamage = (!defender.item || (0, util_2.isQPActive)(defender, field)) ||
+    var resistedKnockOffDamage = (attacker.bossMultiplier > 100) ||
+        (!defender.item || (0, util_2.isQPActive)(defender, field)) ||
         (defender.named('Dialga-Origin') && defender.hasItem('Adamant Crystal')) ||
         (defender.named('Palkia-Origin') && defender.hasItem('Lustrous Globe')) ||
         (defender.name.includes('Giratina-Origin') && defender.item.includes('Griseous')) ||
